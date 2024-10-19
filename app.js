@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    const hoursData = [
+$(document).ready(function (){
+    const hoursData=[
       { day: "tod", hour: 0, weather: "clear-night", temp: 11, time: "00:00" },
       {
         day: "tod",
@@ -36,7 +36,6 @@ $(document).ready(function () {
       { day: "tod", hour: 21, weather: "rainy", temp: 15, time: "21:00" },
       { day: "tod", hour: 22, weather: "rainy", temp: 12, time: "22:00" },
       { day: "tod", hour: 23, weather: "rainy", temp: 10, time: "23:00" },
-  
       { day: "tom", hour: 0, weather: "thunderstorm", temp: 8, time: "00:00" },
       { day: "tom", hour: 1, weather: "thunderstorm", temp: 6, time: "01:00" },
       { day: "tom", hour: 2, weather: "thunderstorm", temp: 4, time: "02:00" },
@@ -63,43 +62,39 @@ $(document).ready(function () {
       { day: "tom", hour: 23, weather: "rainy", temp: 5, time: "23:00" },
       { day: "tom", hour: 0, weather: "rainy", temp: 3, time: "00:00" }
     ];
-  
-    // Iterate over the data and create the HTML dynamically
-    hoursData.forEach((data) => {
-      const hourDiv = $("<div>", {
+      hoursData.forEach((data)=>{
+      const hourDiv=$("<div>",{
         class: "hour d-flex flex-column align-items-center",
         "data-day": data.day,
         "data-hour": data.hour,
         "data-weather": data.weather,
         "data-temp": data.temp
       });
-  
-      const timeSpan = $("<span class='timeSpan'>").text(data.time);
-      const iconSpan = $("<span>", { class: "material-symbols-rounded" });
-      const tempSpan = $("<span class='tempSpan'>").text(data.temp + "°C");
-  
+      const timeSpan=$("<span class='timeSpan'>").text(data.time);
+      const iconSpan=$("<span>", { class: "material-symbols-rounded" });
+      const tempSpan=$("<span class='tempSpan'>").text(data.temp + "°C");
       hourDiv.append(timeSpan, iconSpan, tempSpan);
       $(".hours").append(hourDiv);
     });
-    const background = $(".background");
-    const backgroundNight = $(".backgroundNight");
-    const sun = $(".sun");
-    const moon = $(".moon");
-    const hoursContainer = $(".hours-container");
-    const hours = $(".hour");
-    const rain = $("#rain");
-    const cloud = $("#cloud");
-    const snow = $("#snow");
-    const thunderstorm = $("#thunderstorm");
-    const temperatureDisplay = $("#temperature");
-    const weatherTypeDisplay = $("#weatherType");
-    const currentDay = $("#currentDay");
-    const initialHour = 11;
+    const background=$(".background");
+    const backgroundNight=$(".backgroundNight");
+    const sun=$(".sun");
+    const moon=$(".moon");
+    const hoursContainer=$(".hours-container");
+    const hours=$(".hour");
+    const rain=$("#rain");
+    const cloud=$("#cloud");
+    const snow=$("#snow");
+    const thunderstorm=$("#thunderstorm");
+    const temperatureDisplay=$("#temperature");
+    const weatherTypeDisplay=$("#weatherType");
+    const currentDay=$("#currentDay");
+    const initialHour=11;
   
-    function toggleSunMoon(hour) {
-      if (hour >= 6 && hour <= 21) {
-        const rotation = -90 + (hour - 7) * (180 / 15);
-        sun.css("transform", "rotate(" + rotation + "deg)");
+    function toggleSunMoon(hour){
+      if (hour>=6&&hour<=21){
+        const rotation=-90+(hour-7)*(180/15);
+        sun.css("transform", "rotate("+rotation+"deg)");
         sun.css("opacity", "1");
         moon.css("opacity", "0");
         background.css("opacity", "1");
@@ -107,7 +102,7 @@ $(document).ready(function () {
         $(".hour").css("filter", "invert(0%)");
         $(".cardInfo").css("filter", "invert(0%)");
         moon.css("transition", "all 0s");
-        setTimeout(function () {
+        setTimeout(function(){
           sun.css("transition", "all 1s");
         }, 10);
         cloud.css(
@@ -119,15 +114,15 @@ $(document).ready(function () {
       } else {
         moon.css("opacity", "1");
         sun.css("opacity", "0");
-        const adjustedHour = hour < 7 ? hour + 24 : hour;
-        const rotation = -90 + (adjustedHour - 6) * (180 / 8);
-        moon.css("transform", "rotate(" + rotation + "deg)");
+        const adjustedHour=hour<7?hour+24:hour;
+        const rotation=-90+(adjustedHour-6)*(180/8);
+        moon.css("transform", "rotate("+rotation+"deg)");
         background.css("opacity", "0");
         backgroundNight.css("opacity", "1");
         $(".hour").css("filter", "invert(100%)");
         $(".cardInfo").css("filter", "invert(100%)");
         sun.css("transition", "all 0s");
-        setTimeout(function () {
+        setTimeout(function(){
           moon.css("transition", "all 1s");
         }, 10);
         cloud.css(
@@ -138,33 +133,24 @@ $(document).ready(function () {
         rain.css("mix-blend-mode", "soft-light");
       }
     }
-  
-    // Function to handle scroll and wheel events
-    function handleScrollEvent() {
-      const sl = hoursContainer.scrollLeft();
-      const hourIndex = Math.round(sl / hours.outerWidth());
-      const currentHour = hours.eq(hourIndex);
-  
+    function handleScrollEvent(){
+      const sl=hoursContainer.scrollLeft();
+      const hourIndex=Math.round(sl/hours.outerWidth());
+      const currentHour=hours.eq(hourIndex);
       toggleSunMoon(parseInt(currentHour.data("hour")));
       highlightHour(hourIndex);
       updateWeatherAndTemperature(currentHour);
     }
-  
-    // Function to highlight the selected hour
-    function highlightHour(index) {
-      hours.removeClass("active"); // Remove active class from all hours
-      hours.eq(index).addClass("active"); // Add active class to the selected hour
+    function highlightHour(index){
+      hours.removeClass("active"); 
+      hours.eq(index).addClass("active");
     }
-  
-    function updateWeatherAndTemperature(currentHour) {
-      const temperature = currentHour.data("temp");
-      const weather = currentHour.data("weather");
-      const day = currentHour.data("day");
-  
+    function updateWeatherAndTemperature(currentHour){
+      const temperature=currentHour.data("temp");
+      const weather=currentHour.data("weather");
+      const day=currentHour.data("day");
       temperatureDisplay.text(temperature);
       weatherTypeDisplay.text(weather.replace(/-/g, " "));
-  
-      // Reset elements to default state
       rain.css("opacity", "0");
       snow.css("opacity", "0");
       cloud.css("opacity", "0");
@@ -172,107 +158,87 @@ $(document).ready(function () {
       background.css("filter", "none");
       sun.css("filter", "none");
       moon.css("filter", "none");
-  
-      // Handle weather visibility and background filters
-      if (weather === "rainy") {
+      if (weather==="rainy"){
         rain.css("opacity", "1");
         cloud.css("opacity", "0.8");
         background.css("filter", "grayscale(0.5) brightness(0.5)");
         moon.css("filter", "brightness(0.8)");
-      } else if (weather === "snowy") {
+      } else if (weather==="snowy"){
         snow.css("opacity", "1");
         cloud.css("opacity", "0");
         background.css("filter", "grayscale(0.5) opacity(0.4)");
         sun.css("filter", "grayscale(0.9)");
-      } else if (weather === "cloudy") {
+      } else if (weather==="cloudy"){
         cloud.css("opacity", "0.9");
         background.css("filter", "grayscale(0.5) brightness(0.5)");
         moon.css("filter", "brightness(0.8)");
-      } else if (weather === "thunderstorm") {
+      } else if (weather==="thunderstorm"){
         cloud.css("opacity", "0.8");
         thunderstorm.css("opacity", "1");
         background.css("filter", "grayscale(1) brightness(0.1)");
         sun.css("filter", "grayscale(0.9)");
-      } else if (weather === "partly-cloudy" || weather === "partly-cloudy-night") {
+      } else if (weather==="partly-cloudy" || weather==="partly-cloudy-night"){
         cloud.css("opacity", "0.5");
       }
-  
-      // Handle day text update
-      if (day === "tom") {
+      if (day==="tom") {
         currentDay.text("Tomorrow");
       } else {
         currentDay.text("Today");
       }
     }
-  
-    // Initial setup for the first hour
     function init() {
-      toggleSunMoon(initialHour); // Toggle sun/moon for initial position (07:00)
-      highlightHour(initialHour); // Highlight the first hour initially
+      toggleSunMoon(initialHour); 
+      highlightHour(initialHour); 
       updateWeatherAndTemperature(hours.eq(2));
     }
+    function createRain(){
+      const nbDrop=800;
+      for (let i=1;i<=nbDrop;i++){
+        const dropLeft=randRange(0, 1600);
+        const dropTop=randRange(-1000, 1400);
   
-    // Function to generate drops
-    function createRain() {
-      const nbDrop = 800;
-      for (let i = 1; i <= nbDrop; i++) {
-        const dropLeft = randRange(0, 1600);
-        const dropTop = randRange(-1000, 1400);
-  
-        rain.append('<div class="drop" id="drop' + i + '"></div>');
-        $("#drop" + i).css({ left: dropLeft, top: dropTop });
+        rain.append('<div class="drop" id="drop'+i+'"></div>');
+        $("#drop"+i).css({ left: dropLeft, top: dropTop });
       }
     }
-  
-    // Function to generate a random number range
-    function randRange(minNum, maxNum) {
-      return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+    function randRange(minNum, maxNum){
+      return Math.floor(Math.random() (maxNum-minNum+1))+minNum;
     }
-  
-    // Event listeners
     hoursContainer.on("scroll", handleScrollEvent);
     hoursContainer.on("wheel", function (event) {
-      event.preventDefault(); // Prevent default scrolling behavior
+      event.preventDefault(); 
       hoursContainer.scrollLeft(
-        hoursContainer.scrollLeft() + event.originalEvent.deltaY
+        hoursContainer.scrollLeft()+event.originalEvent.deltaY
       );
       handleScrollEvent();
     });
     hours.on("click", function () {
-      const hour = parseInt($(this).data("hour"));
+      const hour=parseInt($(this).data("hour"));
       toggleSunMoon(hour);
       highlightHour(hours.index(this));
       updateWeatherAndTemperature($(this));
     });
-  
-    // Make it rain
     createRain();
     init();
-    hoursContainer.scrollLeft(81 * initialHour);
+    hoursContainer.scrollLeft(81*initialHour);
   });
-  
-  function setRandomLightningDuration() {
-    const lightning = document.getElementById("thunderstorm");
-    const minDuration = 1; // minimum duration in seconds
-    const maxDuration = 4; // maximum duration in seconds
-    const randomDuration =
-      Math.random() * (maxDuration - minDuration) + minDuration;
+  function setRandomLightningDuration(){
+    const lightning=document.getElementById("thunderstorm");
+    const minDuration=1;
+    const maxDuration=4; 
+    const randomDuration=
+      Math.random()*(maxDuration-minDuration)+minDuration;
     thunderstorm.style.setProperty("--lightning-duration", `${randomDuration}s`);
   }
-  
-  // Set an initial random duration
   setRandomLightningDuration();
-  
-  // Change the duration periodically
-  setInterval(setRandomLightningDuration, 5000); // Change every 5 seconds
-  
-  particlesJS("cloud", {
+  setInterval(setRandomLightningDuration, 5000);
+  particlesJS("cloud",{
     particles: {
-      number: { value: 5, density: { enable: true, value_area: 100 } },
-      color: { value: "#ffffff" },
-      shape: {
+      number:{ value: 5, density: { enable: true, value_area: 100}},
+      color:{ value: "#ffffff" },
+      shape:{
         type: "image",
-        stroke: { width: 2, color: "#00ffff" },
+        stroke: { width: 2, color: "#00ffff"},
         polygon: { nb_sides: 5 },
         image: {
           src: "https://i.ibb.co/vzP35N4/fluffyvloud.png",
@@ -336,20 +302,15 @@ $(document).ready(function () {
     },
     retina_detect: true
   });
-  
-  // Adjust initial positions of the particles
-  function adjustInitialPositions() {
-    const particlesArray = window.pJSDom[0].pJS.particles.array;
-    particlesArray.forEach((p) => {
-      p.x = Math.random() * window.innerWidth;
-      p.y = Math.random() * window.innerHeight;
+  function adjustInitialPositions(){
+    const particlesArray=window.pJSDom[0].pJS.particles.array;
+    particlesArray.forEach((p)=>{
+      p.x=Math.random()*window.innerWidth;
+      p.y=Math.random()*window.innerHeight;
     });
   }
-  
-  // Wait until particles are initialized and then adjust positions
   setTimeout(adjustInitialPositions, 1000);
-  
-  particlesJS("snow", {
+  particlesJS("snow",{
     particles: {
       number: {
         value: 2000,
@@ -408,57 +369,53 @@ $(document).ready(function () {
     },
     retina_detect: true
   });
-  
   var canvas = $("#rain")[0];
+  if (canvas.getContext){
+    var ctx=canvas.getContext("2d");
+    var w=canvas.width;
+    var h=canvas.height;
+    ctx.strokeStyle="rgba(255,255,255,0.5)";
+    ctx.lineWidth=1;
+    ctx.lineCap="round";
   
-  if (canvas.getContext) {
-    var ctx = canvas.getContext("2d");
-    var w = canvas.width;
-    var h = canvas.height;
-    ctx.strokeStyle = "rgba(255,255,255,0.5)";
-    ctx.lineWidth = 1;
-    ctx.lineCap = "round";
-  
-    var init = [];
-    var maxParts = 300;
-    for (var a = 0; a < maxParts; a++) {
+    var init=[];
+    var maxParts=300;
+    for (var a=0;a<maxParts; a++){
       init.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        l: Math.random() * 1,
-        xs: -4 + Math.random() * 4 + 2,
-        ys: Math.random() * 10 + 10
+        x: Math.random()*w,
+        y: Math.random()*h,
+        l: Math.random()*1,
+        xs: -4 + Math.random()*4+2,
+        ys: Math.random()*10+10
       });
     }
   
-    var particles = [];
-    for (var b = 0; b < maxParts; b++) {
-      particles[b] = init[b];
+    var particles=[];
+    for (var b=0;b<maxParts; b++){
+      particles[b]=init[b];
     }
   
-    function draw() {
+    function draw(){
       ctx.clearRect(0, 0, w, h);
-      for (var c = 0; c < particles.length; c++) {
-        var p = particles[c];
+      for (var c=0;c<particles.length; c++){
+        var p=particles[c];
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
+        ctx.lineTo(p.x+p.l*p.xs, p.y+p.l*p.ys);
         ctx.stroke();
       }
       move();
     }
-  
-    function move() {
-      for (var b = 0; b < particles.length; b++) {
-        var p = particles[b];
-        p.x += p.xs;
-        p.y += p.ys;
-        if (p.x > w || p.y > h) {
-          p.x = Math.random() * w;
-          p.y = -20;
+    function move(){
+      for (var b=0;b<particles.length; b++) 
+        var p=particles[b];
+        p.x+=p.xs;
+        p.y+=p.ys;
+        if (p.x>w || p.y>h){
+          p.x=Math.random()*w;
+          p.y=-20;
         }
       }
     }
-  
     setInterval(draw, 3);
   }
