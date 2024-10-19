@@ -1,16 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-
 body {
   background: #f5f5f5;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 300;
 }
-
 header {
   padding: 16px;
   text-align: center;
 }
-
 h1,
 h2,
 h3,
@@ -18,7 +15,6 @@ h4,
 h5 {
   font-weight: 700;
 }
-
 .card {
   position: relative;
   overflow: hidden; /* Ensure vertical scrolling */
@@ -28,7 +24,6 @@ h5 {
   border: none;
   border-radius: 32px;
 }
-
 .sun,
 .moon {
   position: absolute;
@@ -41,14 +36,12 @@ h5 {
   transition: all 1s;
   transform: rotate(-90deg); /* Initial rotation of -90 degrees */
 }
-
 .sun {
   bottom: 300px;
   background: #fceabb;
   box-shadow: 0px 0px 40px 15px #fceabb;
   opacity: 1;
 }
-
 .moon {
   bottom: 250px;
   background: url("https://drive.google.com/thumbnail?id=1nbYvuzW1fU3iiXoxKeMSb4TvP7rkryuy&sz=w1000");
@@ -56,7 +49,6 @@ h5 {
   box-shadow: 0px 0px 20px 5px #ffffff;
   opacity: 0;
 }
-
 @keyframes rise-set {
   0% {
     transform: rotate(-90deg);
@@ -65,7 +57,6 @@ h5 {
     transform: rotate(90deg);
   }
 }
-
 .hours-container {
   position: absolute;
   bottom: 0;
@@ -75,16 +66,13 @@ h5 {
   white-space: nowrap;
   backdrop-filter: blur(20px);
 }
-
 .hours {
   display: flex;
   padding: 8px;
 }
-
 .hours-container {
   scroll-behavior: smooth;
 }
-
 .hour {
   padding: 5px 10px;
   cursor: pointer;
@@ -95,19 +83,15 @@ h5 {
   min-width: 80px;
   text-align: center;
 }
-
 .hour:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
-
 .active {
   background-color: rgba(255, 255, 255, 0.7);
 }
-
 .last {
   min-width: 150px;
 }
-
 .background {
   position: absolute;
   width: 100%;
@@ -116,7 +100,6 @@ h5 {
   z-index: 0;
   transition: all 2s linear;
 }
-
 .backgroundNight {
   position: absolute;
   width: 100%;
@@ -125,19 +108,16 @@ h5 {
   z-index: -1;
   transition: all 2s linear;
 }
-
 .card,
 .card-body {
   background: transparent !important;
   padding: 0;
 }
-
 .rain {
   width: 100%;
   height: 100%;
   opacity: 0;
 }
-
 .drop {
   background: -webkit-gradient(
     linear,
@@ -158,8 +138,6 @@ h5 {
   -webkit-animation: fall 0.3s linear infinite;
   -moz-animation: fall 0.3s linear infinite;
 }
-
-/* animate the drops*/
 @-webkit-keyframes fall {
   to {
     margin-top: 500px;
@@ -170,7 +148,6 @@ h5 {
     margin-top: 500px;
   }
 }
-
 .temperature {
   position: absolute;
   z-index: 2;
@@ -180,7 +157,6 @@ h5 {
   font-size: 40px;
   font-weight: 600;
 }
-
 .weatherType {
   position: absolute;
   z-index: 2;
@@ -191,7 +167,6 @@ h5 {
   line-height: 34px;
   text-transform: capitalize;
 }
-
 .currentDay {
   position: absolute;
   z-index: 2;
@@ -201,14 +176,12 @@ h5 {
   font-size: 16px;
   line-height: 34px;
 }
-
 .hour span {
   position: relative;
   display: flex;
   text-align: center;
   color: black;
 }
-
 .hour .timeSpan {
   font-size: 14px;
   font-weight: 300;
@@ -217,70 +190,55 @@ h5 {
   font-size: 14px;
   font-weight: 700;
 }
-
-.hour:last-child::after {
+hour:last-child::after {
   width: 300px;
   height: 1px;
   content: "";
 }
-
 .hour .material-symbols-rounded {
   font-size: 32px;
   line-height: 40px;
 }
-
 .hour[data-weather="sunny"] .material-symbols-rounded::after {
   content: "sunny";
 }
-
 .hour[data-weather="clear-night"] .material-symbols-rounded::after {
   content: "clear_night";
 }
-
 .hour[data-weather="partly-cloudy"] .material-symbols-rounded::after {
   content: "partly_cloudy_day";
 }
-
 .hour[data-weather="partly-cloudy-night"] .material-symbols-rounded::after {
   content: "partly_cloudy_night";
 }
-
 .hour[data-weather="cloudy"] .material-symbols-rounded::after {
   content: "cloud";
 }
-
 .hour[data-weather="foggy"] .material-symbols-rounded::after {
   content: "foggy";
 }
-
 .hour[data-weather="rainy"] .material-symbols-rounded::after {
   content: "rainy";
 }
-
 .hour[data-weather="snowy"] .material-symbols-rounded::after {
   content: "ac_unit";
 }
-
 .hour[data-weather="thunderstorm"] .material-symbols-rounded::after {
   content: "thunderstorm";
 }
-
 .card {
   color: black;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   border: none;
 }
-
 .credit {
   box-shadow: none;
   border-radius: 0;
 }
-
 a {
   color: black;
 }
-
 #cloud {
   position: absolute;
   z-index: 0;
@@ -294,7 +252,6 @@ a {
   top: 0;
   transition: all 2s;
 }
-
 #snow {
   opacity: 0;
   top: 0;
@@ -305,7 +262,6 @@ a {
   height: 100%;
   transition: all 2s;
 }
-
 #rain {
   width: 100%;
   height: 100%;
@@ -313,7 +269,6 @@ a {
   top: 0;
   transition: all 2s;
 }
-
 #lightning {
   position: absolute;
   top: -200px;
@@ -329,7 +284,6 @@ a {
   pointer-events: none;
   animation: lightningFlash var(--lightning-duration) linear infinite;
 }
-
 @keyframes lightningFlash {
   0%,
   100% {
