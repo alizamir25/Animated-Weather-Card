@@ -369,7 +369,7 @@ $(document).ready(function (){
     },
     retina_detect: true
   });
-  var canvas = $("#rain")[0];
+  var canvas=$("#rain")[0];
   if (canvas.getContext){
     var ctx=canvas.getContext("2d");
     var w=canvas.width;
@@ -385,7 +385,7 @@ $(document).ready(function (){
         x: Math.random()*w,
         y: Math.random()*h,
         l: Math.random()*1,
-        xs: -4 + Math.random()*4+2,
+        xs: -4+Math.random()*4+2,
         ys: Math.random()*10+10
       });
     }
@@ -405,7 +405,7 @@ $(document).ready(function (){
       move();
     }
     function move(){
-      for (var b=0;b<particles.length; b++) 
+      for (var b=0;b<particles.length;b++) 
         var p=particles[b];
         p.x+=p.xs;
         p.y+=p.ys;
