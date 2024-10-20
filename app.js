@@ -389,12 +389,10 @@ $(document).ready(function (){
         ys: Math.random()*10+10
       });
     }
-  
     var particles=[];
     for (var b=0;b<maxParts; b++){
       particles[b]=init[b];
     }
-  
     function draw(){
       ctx.clearRect(0, 0, w, h);
       for (var c=0;c<particles.length; c++){
