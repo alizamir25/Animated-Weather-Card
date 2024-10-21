@@ -377,7 +377,6 @@ $(document).ready(function (){
     ctx.strokeStyle="rgba(255,255,255,0.5)";
     ctx.lineWidth=1;
     ctx.lineCap="round";
-  
     var init=[];
     var maxParts=300;
     for (var a=0;a<maxParts; a++){
